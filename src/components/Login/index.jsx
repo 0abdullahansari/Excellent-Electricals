@@ -1,8 +1,8 @@
 import "./Login.css"
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
-import { auth } from "./Firebase.js";
-import { useStateValue } from "./StateProvider";
+import { auth } from "../../Firebase.js";
+import { useStateValue } from "../../StateProvider";
 
 function Login() {
 const navigate = useNavigate();

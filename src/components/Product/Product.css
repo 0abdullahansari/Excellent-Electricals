@@ -25,10 +25,22 @@ margin-bottom: 15px;
 
 .product > button {
 background: #DA491B;
-border: 1px solid;
+color: white;
+padding: 0.25rem 0.5rem;
+border-radius: 0.2rem;
 margin-top: 10px;
-border-color: #a88734 #9c7e31 #846a29;
-color: #111;
+cursor: pointer;
+transition-duration: 0.3s;
+border: 0px;
+font-weight: bold;
+}
+
+.product > button:hover {
+    transform: scale(1.1);
+}
+
+.product > button:active {
+    transform: scale(1);
 }
 
 .price {

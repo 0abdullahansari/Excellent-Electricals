@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Topbar from "./Topbar";
-import Home from "./Home";
-import Cart from "./Cart";
-import Signup from "./Signup";
+import Topbar from "./components/Topbar";
+import Home from "./components/Home";
+import Cart from "./components/Cart";
+import Signup from "./components/Signup";
 import {  
   BrowserRouter as Router,  
   Routes,  
@@ -11,7 +11,7 @@ import {
   Link  
 }   
 from 'react-router-dom';
-import Login from "./Login";
+import Login from "./components/Login";
 import { auth } from "./Firebase";
 import { useStateValue } from "./StateProvider";
 

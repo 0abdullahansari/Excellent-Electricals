@@ -10,10 +10,22 @@
 
 .checkoutProduct__info > button {
     background: #DA491B;
-    border: 1px solid;
+    color: white;
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.2rem;
     margin-top: 10px;
-    border-color: #a88734 #9c7e31 #846a29;
-    color: #111;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    border: 0px;
+}
+
+.checkoutProduct__info > button:hover {
+    transform: scale(1.1);
+}
+
+.checkoutProduct__info > button:active {
+    transform: scale(1);
 }
 
 .checkoutProduct__image {

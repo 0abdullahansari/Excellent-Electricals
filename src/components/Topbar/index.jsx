@@ -1,8 +1,8 @@
 import'./Topbar.css'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { useStateValue } from "./StateProvider";
-import { auth } from "./Firebase";
+import { useStateValue } from "../../StateProvider";
+import { auth } from "../../Firebase";
 import {  
   BrowserRouter as Router,  
   Routes,  
@@ -11,7 +11,7 @@ import {
 }
 from 'react-router-dom';
 
-import topf from "./assets/topf.png"
+import topf from "./topf.png"
 
 function Topbar() {
 

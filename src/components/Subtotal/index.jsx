@@ -1,7 +1,7 @@
 import React from 'react'
 import  './Subtotal.css'
-import { useStateValue } from "./StateProvider";
-import { getBasketTotal } from "./reducer";
+import { useStateValue } from "../../StateProvider";
+import { getBasketTotal } from "../../reducer";
 import { useNavigate} from "react-router-dom";
 import CurrencyFormat from "react-currency-format";
 
