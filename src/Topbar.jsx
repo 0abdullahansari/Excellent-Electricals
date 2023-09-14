@@ -11,6 +11,8 @@ import {
 }
 from 'react-router-dom';
 
+import topf from "src\assets\topf.png"
+
 function Topbar() {
 
   const [{ basket, user }, dispatch] = useStateValue();
@@ -26,7 +28,7 @@ function Topbar() {
       
       {/* Logo */}
       <Link to="/">
-        <img className='logo' src="src\assets\topf.png"  />
+        <img className='logo' src={topf}  />
       </Link>
 
       {/* search */}

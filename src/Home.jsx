@@ -1,7 +1,7 @@
 import { useEffect,useState } from 'react';
 import './Home.css'
 import Product from './Product'
-
+import banner from "src\assets\banner.jpg";
 
 export default function Home(){
     const [data,setData]=useState('none');
@@ -9,7 +9,7 @@ export default function Home(){
     return(
         <div className='home'>
             <div className='homecontent'>
-                <img className='banner' src="src\assets\banner.jpg" alt="" />
+                <img className='banner' src={banner} alt="" />
 
                 <div className='section'>
                     <Product
