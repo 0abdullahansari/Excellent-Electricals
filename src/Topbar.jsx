@@ -11,7 +11,7 @@ import {
 }
 from 'react-router-dom';
 
-import topf from "src\assets\topf.png"
+import topf from "./assets/topf.png"
 
 function Topbar() {
 

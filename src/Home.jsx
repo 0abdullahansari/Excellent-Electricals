@@ -1,7 +1,7 @@
 import { useEffect,useState } from 'react';
 import './Home.css'
 import Product from './Product'
-import banner from "src\assets\banner.jpg";
+import banner from "./assets/banner.jpg";
 
 export default function Home(){
     const [data,setData]=useState('none');
