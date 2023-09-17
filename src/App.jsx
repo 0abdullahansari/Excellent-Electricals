@@ -4,6 +4,7 @@ import Topbar from "./components/Topbar";
 import Home from "./components/Home";
 import Cart from "./components/Cart";
 import Signup from "./components/Signup";
+import Payment from "./components/Payment";
 import {  
   BrowserRouter as Router,  
   Routes,  
@@ -50,6 +51,7 @@ function App() {
           <Route path="/cart" element={<><Topbar/><Cart/></>}/>
           <Route path="/login" element={<><Login/></>}/>
           <Route path="/signup" element={<><Signup/></>}/>
+          <Route path="/payment" element={<><Topbar/><Payment/></>}/>
         </Routes>
       </div>
     </Router>
