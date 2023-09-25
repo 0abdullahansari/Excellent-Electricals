@@ -2,17 +2,16 @@ import React, { useState, useEffect } from 'react';
 import './Payment.css';
 import { useStateValue } from "../../StateProvider"
 import CheckoutProduct from "../CartProducts";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "../../reducer";
-import axios from './axios';
-import { db } from "./firebase";
+import axios from '../../axios';
+import { db } from "../../Firebase";
 
 function Payment() {
     const [{ basket, user }, dispatch] = useStateValue();
-    const history = useHistory();
-
+    const navigate = useNavigate();
     const stripe = useStripe();
     const elements = useElements();
 
@@ -35,9 +34,6 @@ function Payment() {
 
         getClientSecret();
     }, [basket])
-
-    console.log('THE SECRET IS >>>', clientSecret)
-    console.log('👱', user)
 
     const handleSubmit = async (event) => {
         // do all the fancy stripe stuff...
@@ -70,7 +66,7 @@ function Payment() {
                 type: 'EMPTY_BASKET'
             })
 
-            history.replace('/orders')
+            navigate('/orders', { replace: true });
         })
 
     }
@@ -130,9 +126,10 @@ function Payment() {
                     </div>
                     <div className="payment__details">
                             {/* Stripe magic will go */}
-
                             <form onSubmit={handleSubmit}>
                                 <CardElement onChange={handleChange}/>
+                                {/* Errors */}
+                                {error && <div>{error}</div>}
 
                                 <div className='payment__priceContainer'>
                                     <CurrencyFormat
@@ -143,15 +140,14 @@ function Payment() {
                                         value={getBasketTotal(basket)}
                                         displayType={"text"}
                                         thousandSeparator={true}
-                                        prefix={"$"}
+                                        prefix={"₹ "}
                                     />
+                                    
                                     <button disabled={processing || disabled || succeeded}>
                                         <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
                                     </button>
                                 </div>
 
-                                  {/* Errors */}
-                                {error && <div>{error}</div>}
                             </form>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import { auth } from "../../Firebase.js";
 import { useStateValue } from "../../StateProvider";
+import siglof from './siglof.jpg'
 
 function Login() {
 const navigate = useNavigate();
@@ -40,7 +41,7 @@ auth
         <Link to='/'>
             <img
                 className="login__logo"
-                src='src\assets\siglof.jpg' 
+                src={siglof} 
             />
         </Link>
 

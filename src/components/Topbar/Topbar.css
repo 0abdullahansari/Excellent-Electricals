@@ -40,6 +40,7 @@ font-weight: 800;
     border-radius: 24px;
 }
 
+
 .topSearchInput{
     height: 12px;
     padding: 10px;
@@ -62,7 +63,7 @@ font-weight: 800;
     flex-direction: column;
     margin-left: 10px;
     margin-right: 10px;
-    color: #647da0;
+    color: hwb(215 39% 37%);
     z-index: 3;
 }
 
@@ -75,15 +76,10 @@ font-weight: 800;
 .cartcount{
     margin-left: 10px;
     margin-right: 10px;
-    color:#647da0;
+    color:hsl(215, 24%, 51%);
 }
 
 .cart .carticon {
     color:#647da0;
 }
 
-/* .navoptions .cart {
-    color: -webkit-link;
-    cursor: pointer;
-    text-decoration: none;
-} */

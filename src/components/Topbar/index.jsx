@@ -38,6 +38,7 @@ function Topbar() {
       </div>
       
       <div className='navoptions'>
+        
         <Link to={!user && '/login'}>
           <div onClick={handleAuthenticaton} className='baroption'>
             <span className="header__optionLineOne">Hello {!user ? 'Guest' : user.email}</span>
