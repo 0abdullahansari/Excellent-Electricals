@@ -23,12 +23,17 @@ function Payment() {
 
     useEffect(() => {
         // generate the special stripe secret which allows us to charge a customer
+       console.log("hrllo")
+    }, [basket])
+    useEffect(() => {
+        // generate the special stripe secret which allows us to charge a customer
         const getClientSecret = async () => {
             const response = await axios({
                 method: 'post',
                 // Stripe expects the total in a currencies subunits
                 url: `/payments/create?total=${getBasketTotal(basket) * 100}`
             });
+            console.log("Hello",response.data)
             setClientSecret(response.data.clientSecret)
         }
 
@@ -39,35 +44,34 @@ function Payment() {
         // do all the fancy stripe stuff...
         event.preventDefault();
         setProcessing(true);
+        console.log("Tdd")
+        const amount = basket?.reduce((acc,item)=> acc+item.price,0);
 
-        const payload = await stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-                card: elements.getElement(CardElement)
-            }
-        }).then(({ paymentIntent }) => {
-            // paymentIntent = payment confirmation
-
-            db
-              .collection('users')
-              .doc(user?.uid)
-              .collection('orders')
-              .doc(paymentIntent.id)
-              .set({
-                  basket: basket,
-                  amount: paymentIntent.amount,
-                  created: paymentIntent.created
-              })
-
-            setSucceeded(true);
-            setError(null)
-            setProcessing(false)
-
-            dispatch({
-                type: 'EMPTY_BASKET'
-            })
-
-            navigate('/orders', { replace: true });
+        console.log("thisisuser",amount);
+        const body = JSON.stringify({
+            amount:amount,
+            customerId:user.email,
+            customerPhone:"9871887737"
         })
+        const options = {
+            url:"/pretransaction",
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: {
+                amount:amount,
+                customerId:user.email,
+                customerPhone:"9871887737"
+            }
+        };
+        const response = await axios(options);
+        console.log(response);
+
+        const payment_session_id = response?.data?.payment_session_id;
+        console.log(window.Cashfree);
+        const cashfree = new window.Cashfree(payment_session_id);
+        cashfree.redirect();
 
     }
 
@@ -80,6 +84,7 @@ function Payment() {
 
     return (
         <div className='payment'>
+
             <div className='payment__container'>
                 <h1>
                     Checkout (
