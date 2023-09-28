@@ -6,11 +6,6 @@ import Cart from "./components/Cart";
 import Signup from "./components/Signup";
 import Payment from "./components/Payment";
 import Orders from "./components/Orders"
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-const promise = loadStripe(
-  'pk_test_51NrCkySHYBUIxPcUlZrrcYwNCBjWU9ueWjlJAZ51EzgmPDcwz75fPnFPolbnbBq1fprYpe51A5DoMbrifKlEo4dv0021v2NRBg'
-);
 import {  
   BrowserRouter as Router,  
   Routes,  
@@ -27,20 +22,13 @@ function App() {
   const [{basket, user}, dispatch] = useStateValue();
 
   useEffect(() => {
-    // will only run once when the app component loads...
-
     auth.onAuthStateChanged((authUser) => {
-      console.log("THE USER IS >>> ", authUser);
-
       if (authUser) {
-        // the user just logged in / the user was logged in
-
         dispatch({
           type: "SET_USER",
           user: authUser,
         });
       } else {
-        // the user is logged out
         dispatch({
           type: "SET_USER",
           user: null,
@@ -57,8 +45,7 @@ function App() {
           <Route path="/cart" element={<><Topbar/><Cart/></>}/>
           <Route path="/login" element={<><Login/></>}/>
           <Route path="/signup" element={<><Signup/></>}/>
-          <Route path="/payment" element={<><Topbar/><Elements stripe={promise}>
-          <Payment/></Elements></>}/>
+          <Route path="/payment" element={<><Topbar/><Payment/></>}/>
           <Route path="/orders" element={<><Orders/></>}/>
         </Routes>
       </div>

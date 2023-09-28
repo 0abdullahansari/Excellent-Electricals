@@ -6,7 +6,6 @@ function CartProduct({ id, image, title, price, rating, hideButton }) {
     const [{ basket }, dispatch] = useStateValue();
 
     const removeFromBasket = () => {
-        // remove the item from the basket
         dispatch({
             type: 'REMOVE_FROM_BASKET',
             id: id,

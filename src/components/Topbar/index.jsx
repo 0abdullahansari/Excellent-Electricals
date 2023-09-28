@@ -25,13 +25,9 @@ function Topbar() {
 
   return (
     <div className='topbar' >
-      
-      {/* Logo */}
       <Link to="/">
         <img className='logo' src={topf}  />
       </Link>
-
-      {/* search */}
       <div className='topSearch'>
         <input id="searchinput" type="text" className='topSearchInput' />
         <SearchIcon className='topbarsearchicon'/>

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
   // THE API (cloud function) URL
-  baseURL: 'http://127.0.0.1:5001/excellent-electricals/us-central1/api'
+  baseURL: 'https://us-central1-excellent-electricals.cloudfunctions.net/api'
 });
 
 export default instance;

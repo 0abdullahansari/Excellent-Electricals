@@ -16,7 +16,7 @@ function Payment() {
     const elements = useElements();
 
     const cashfree = new window.Cashfree({
-        mode:"sandbox" //or production
+        mode:"sandbox" 
     });
 
     const [succeeded, setSucceeded] = useState(false);
@@ -25,31 +25,8 @@ function Payment() {
     const [disabled, setDisabled] = useState(false);
     const [clientSecret, setClientSecret] = useState(true);
 
-
-    // useEffect(() => {
-    //     // generate the special stripe secret which allows us to charge a customer
-    //     const getClientSecret = async () => {
-    //         const response = await axios({
-    //             method: 'post',
-    //             // Stripe expects the total in a currencies subunits
-    //             url: `/payments/create?total=${getBasketTotal(basket) * 100}`
-    //         });
-    //         console.log("Hello",response.data)
-    //         setClientSecret(response.data.clientSecret)
-    //     }
-
-    //     getClientSecret();
-    // }, [basket])
-
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // setProcessing(true);
-
-        const body = JSON.stringify({
-            amount:getBasketTotal(basket),
-            customerId:user.email,
-            customerPhone:"9871887737"
-        })
         const options = {
             url:"/pretransaction",
             method: "post",
@@ -67,14 +44,9 @@ function Payment() {
 
         const payment_session_id = response?.data?.payment_session_id;
         const orderid=response?.data?.order_id;
-        // console.log(window.Cashfree);
-        // const cashfree = new window.Cashfree(payment_session_id);
-        // cashfree.redirect();
 
         let checkoutOptions = {
             paymentSessionId: payment_session_id,
-            // returnUrl: `http://localhost:5173/orders?order_id=${order_id}`,
-            
         }
         cashfree.checkout(checkoutOptions).then(function(result){
 
@@ -101,44 +73,6 @@ function Payment() {
                 result.redirect
             }
         });
-
-
-
-        // const dropinConfig = 
-        // {
-        //     paymentSessionId:payment_session_id,
-        //     components: 
-        //     [
-        //         "order-details",
-        //         "card",
-        //         "netbanking",
-        //         "app",
-        //         "upi",
-        //     ],
-        //     onSuccess: function(data){
-        //        //on success
-        //     },
-        //     onFailure: function(data){
-        //        //on success
-        //     },
-        //     style: 
-        //     {
-        //         //to be replaced by the desired values
-        //         backgroundColor: "#ffffff",
-        //         color: "#11385b", 
-        //         fontFamily: "Lato",
-        //         fontSize: "14px",
-        //         errorColor: "#ff0000",
-        //         theme: "light"
-        //     }
-        // }
-        // console.log("B4 drop");
-        // const element = document.getElementsByClassName('payment')[0]
-        // console.log(element);
-        
-        // cashfree.drop(element,dropinConfig);
-        
-        // console.log("aftr drop");
     }
 
     const handleChange = event => {
@@ -198,9 +132,6 @@ function Payment() {
                     <div className="payment__details">
                             {/* Stripe magic will go */}
                             <form onSubmit={handleSubmit}>
-                                <CardElement onChange={handleChange}/>
-                                {/* Errors */}
-                                {error && <div>{error}</div>}
 
                                 <div className='payment__priceContainer'>
                                     <CurrencyFormat
