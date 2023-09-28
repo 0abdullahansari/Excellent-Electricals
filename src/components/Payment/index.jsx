@@ -3,7 +3,6 @@ import './Payment.css';
 import { useStateValue } from "../../StateProvider"
 import CheckoutProduct from "../CartProducts";
 import { Link, useNavigate } from "react-router-dom";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "../../reducer";
 import axios from '../../axios';
@@ -12,8 +11,6 @@ import { db } from "../../Firebase";
 function Payment() {
     const [{ basket, user }, dispatch] = useStateValue();
     const navigate = useNavigate();
-    const stripe = useStripe();
-    const elements = useElements();
 
     const cashfree = new window.Cashfree({
         mode:"sandbox" 
@@ -21,9 +18,6 @@ function Payment() {
 
     const [succeeded, setSucceeded] = useState(false);
     const [processing, setProcessing] = useState("");
-    const [error, setError] = useState(null);
-    const [disabled, setDisabled] = useState(false);
-    const [clientSecret, setClientSecret] = useState(true);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -73,13 +67,6 @@ function Payment() {
                 result.redirect
             }
         });
-    }
-
-    const handleChange = event => {
-        // Listen for changes in the CardElement
-        // and display any errors as the customer types their card details
-        setDisabled(event.empty);
-        setError(event.error ? event.error.message : "");
     }
 
     return (
@@ -145,7 +132,7 @@ function Payment() {
                                         prefix={"₹ "}
                                     />
                                     
-                                    <button disabled={processing || disabled || succeeded}>
+                                    <button disabled={processing || succeeded}>
                                         <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
                                     </button>
                                 </div>
