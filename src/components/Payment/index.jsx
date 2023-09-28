@@ -54,11 +54,6 @@ function Payment() {
                   amount: orderid.amount,
                   created: orderid.created
               })
-              for (let i = 1; i <= 1000; i++) {
-                console.log(i);
-            }
-            
-
             if(result.error){
                 alert(result.error.message)
             }
