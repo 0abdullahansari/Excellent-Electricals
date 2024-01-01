@@ -21,6 +21,7 @@ function Payment() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        
         const options = {
             url:"/pretransaction",
             method: "post",
